@@ -470,14 +470,22 @@ class QuickBooks_WebConnector_Server
 		{
 			$this->_headers();
 
+            /*
 			print(QUICKBOOKS_PACKAGE_NAME . ' Server v' . QUICKBOOKS_PACKAGE_VERSION . ' at ' . $_SERVER['REQUEST_URI'] . "\n");
 			print('   (c) ' . QUICKBOOKS_PACKAGE_AUTHOR . ' ' . "\n");
 			print('   Visit us at: ' . QUICKBOOKS_PACKAGE_WEBSITE . ' ' . "\n");
 			print("\n");
 			print('Use the QuickBooks Web Connector to access this SOAP server.' . "\n");
 			print("\n");
-			
-			if ($debug)
+			*/
+
+            // ADDED BY ANANDA
+            $baseURL = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') ? 'https' : 'http');
+            $baseURL .= '://'.$_SERVER['HTTP_HOST'];
+            echo "This is the Cloud 49 SOAP server for the Quickbooks Web Connector.\n";
+            echo "To integrate Cloud 49 with Quickbooks, follow the instructions at $baseURL/qbd\n\n";
+
+            if ($debug)
 			{
 				print(get_class($this) . str_replace(__CLASS__, '', __METHOD__) . '() parameters: ' . "\n");
 				print(' - $return = ' . $return . "\n");
